@@ -9,7 +9,7 @@ clear; clc; close all;
 
 %% ── 1. Component Values ───────────────────────────────────
 R1 = 40;        % Input resistor        [Ohm]
-R2 = 750;       % Series resistor       [Ohm]
+R2 = 2800;       % Series resistor       [Ohm]
 R3 = 1000;      % Feedback resistor     [Ohm]
 C1 = 100e-6;     % Shunt capacitor       [F]
 C2 = 10e-6;      % Feedback capacitor    [F]
