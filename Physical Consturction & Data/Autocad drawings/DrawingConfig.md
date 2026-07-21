@@ -314,10 +314,3 @@ To improve lifting capability:
 
 ---
 
-# Author
-
-**Suvam Das**
-
-Biomedical Engineering
-
-Human Motion Controlled Robotic Arm Project
