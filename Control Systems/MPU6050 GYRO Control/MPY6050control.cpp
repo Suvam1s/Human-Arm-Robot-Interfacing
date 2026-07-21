@@ -1,22 +1,14 @@
 #include <Wire.h>
 #include <MPU6050.h>
-#include <ESP32Servo.h>
 
-MPU6050 imu;
+MPU6050 mpu;
 
-Servo pitchServo;
-Servo yawServo;
+float pitch = 0.0;
+float roll = 0.0;
 
-// Servo Pins
-const int PITCH_SERVO_PIN = 18;
-const int YAW_SERVO_PIN   = 19;
+unsigned long previousTime;
 
-// Current angles
-float pitch = 90.0;
-float yaw   = 90.0;
-
-// Gyro integration
-unsigned long previousTime = 0;
+const float alpha = 0.98;
 
 void setup()
 {
@@ -24,55 +16,84 @@ void setup()
 
     Wire.begin();
 
-    imu.initialize();
+    mpu.initialize();
 
-    if(!imu.testConnection())
+    if(!mpu.testConnection())
     {
-        Serial.println("MPU6500 Not Connected");
+        Serial.println("MPU6500 Connection Failed");
 
         while(1);
     }
 
     Serial.println("MPU6500 Connected");
 
-    pitchServo.setPeriodHertz(50);
-    yawServo.setPeriodHertz(50);
-
-    pitchServo.attach(PITCH_SERVO_PIN,500,2500);
-    yawServo.attach(YAW_SERVO_PIN,500,2500);
-
     previousTime = micros();
 }
 
 void loop()
 {
-    int16_t gx,gy,gz;
-    imu.getRotation(&gx,&gy,&gz);
+    int16_t ax, ay, az;
+    int16_t gx, gy, gz;
+
+    mpu.getMotion6(
+        &ax, &ay, &az,
+        &gx, &gy, &gz
+    );
 
     unsigned long currentTime = micros();
 
-    float dt = (currentTime-previousTime)/1000000.0;
+    float dt =
+        (currentTime - previousTime) / 1000000.0;
 
     previousTime = currentTime;
 
-    // ±250°/s sensitivity
-    float gyroX = gx / 131.0;
-    float gyroZ = gz / 131.0;
+    //-----------------------------
+    // Accelerometer Angle
+    //-----------------------------
 
-    pitch += gyroX * dt;
-    yaw   += gyroZ * dt;
+    float accelPitch =
+        atan2(ay,
+              sqrt(ax * ax + az * az))
+              * 180.0 / PI;
 
-    pitch = constrain(pitch,0,180);
-    yaw   = constrain(yaw,0,180);
+    float accelRoll =
+        atan2(-ax,
+              sqrt(ay * ay + az * az))
+              * 180.0 / PI;
 
-    pitchServo.write((int)pitch);
-    yawServo.write((int)yaw);
+    //-----------------------------
+    // Gyroscope
+    //-----------------------------
+
+    float gyroPitchRate =
+        gx / 131.0;
+
+    float gyroRollRate =
+        gy / 131.0;
+
+    //-----------------------------
+    // Complementary Filter
+    //-----------------------------
+
+    pitch =
+        alpha *
+        (pitch + gyroPitchRate * dt)
+        +
+        (1 - alpha) *
+        accelPitch;
+
+    roll =
+        alpha *
+        (roll + gyroRollRate * dt)
+        +
+        (1 - alpha) *
+        accelRoll;
 
     Serial.print("Pitch : ");
     Serial.print(pitch);
 
-    Serial.print("    Yaw : ");
-    Serial.println(yaw);
+    Serial.print("   Roll : ");
+    Serial.println(roll);
 
-    delay(10);
+    delay(5);
 }
