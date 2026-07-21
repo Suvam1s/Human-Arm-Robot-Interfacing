@@ -133,7 +133,7 @@ These components ensure secure mechanical assembly and reliable operation of the
 | ---------------------------- | ----------------------------------- |
 | ESP32 Development Board      | Main controller                     |
 | 20 kg Digital Servo          | Shoulder pitch                      |
-| 15 kg Servo                  | Shoulder yaw                        |
+| 15 kg Servo(360 degree)      | Shoulder yaw                        |
 | MG995 Servo                  | Elbow movement                      |
 | SG90 Servo                   | Wrist bend                          |
 | Flex Sensor                  | Elbow motion sensing                |
