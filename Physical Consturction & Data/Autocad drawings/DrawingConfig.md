@@ -40,18 +40,19 @@ Total Controlled DOF: **4**
 
 The robotic arm consists of two primary links representing the human upper arm and forearm.
 
-## Link Dimensions
+## Robot Dimensions
 
-### L1 (Humerus)
+The following table summarizes the principal dimensions of the 5R human-arm-inspired robotic manipulator. The dimensions are defined according to the coordinate system used in the kinematic analysis, with the corresponding direction of movement along the X, Y, or Z axis.
 
-- Length: **14.5 cm**
-- Weight: **35 g**
-
-### L2 (Forearm)
-
-- Length: **19.5 cm**
-- Weight: **12.5 g**
-
+| Anatomical / Robot Section | Dimension | Direction |
+|---|---:|---|
+| Base → Shoulder | 5 cm | +Z |
+| Shoulder Offset | 2.5 cm | +Y |
+| **Upper Arm (Humerus)** | **16.5 cm** | **+Z** |
+| Upper Arm Offset | 1 cm | +Y |
+| **Forearm (Elbow → Wrist)** | **17.5 cm** | **+Z** |
+| Forearm Offset | 1 cm | −Y |
+| Wrist Section | 1.5 cm | +X |
 ---
 
 # Actuator Configuration
