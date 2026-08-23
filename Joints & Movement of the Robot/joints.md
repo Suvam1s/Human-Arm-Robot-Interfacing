@@ -13,6 +13,19 @@ This analysis covers:
 * Screw-axis calculation for each joint
 * Complete screw-axis matrix
 * Grübler–Kutzbach degree-of-freedom verification
+## Robot Dimensions
+
+The following table summarizes the principal dimensions of the 5R human-arm-inspired robotic manipulator. The dimensions are defined according to the coordinate system used in the kinematic analysis, with the corresponding direction of movement along the X, Y, or Z axis.
+
+| Anatomical / Robot Section | Dimension | Direction |
+|---|---:|---|
+| Base → Shoulder | 5 cm | +Z |
+| Shoulder Offset | 2.5 cm | +Y |
+| **Upper Arm (Humerus)** | **16.5 cm** | **+Z** |
+| Upper Arm Offset | 1 cm | +Y |
+| **Forearm (Elbow → Wrist)** | **17.5 cm** | **+Z** |
+| Forearm Offset | 1 cm | −Y |
+| Wrist Section | 1.5 cm | +X |
 ## Physical Meaning
 
 When a revolute joint rotates, every point in space experiences a velocity. To represent this motion as a **spatial velocity twist**:
