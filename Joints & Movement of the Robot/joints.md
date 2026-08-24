@@ -561,21 +561,13 @@ $$
 Combining the five screw axes column-wise:
 
 $$
-\mathcal{S}
-===========
-
-\begin{bmatrix}
-S_1 & S_2 & S_3 & S_4 & S_5
-\end{bmatrix}
+\mathcal{S}===========\begin{bmatrix}S_1 & S_2 & S_3 & S_4 & S_5\end{bmatrix}
 $$
 
 gives the complete $6 \times 5$ screw-axis matrix:
 
 $$
-S=
-\begin{bmatrix}
-S_1 &\ S_2 &\ S_3 &\ S_4 &\ S_5
-\end{bmatrix}
+S=\begin{bmatrix}S_1 &\ S_2 &\ S_3 &\ S_4 &\ S_5\end{bmatrix}
 $$
 
 gives the complete `6 × 5` screw-axis matrix:
@@ -601,8 +593,9 @@ $$
 and the columns correspond to:
 
 $$
-S=[S_1,S_2,S_3,S_4,S_5]
+S=\begin{bmatrix}S_1 &\ S_2 &\ S_3 &\ S_4 &\ S_5\end{bmatrix}
 $$
+
 ---
 
 # 8. Grübler–Kutzbach Degree of Freedom Analysis
