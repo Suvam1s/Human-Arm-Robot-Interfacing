@@ -1,3 +1,15 @@
+# Introduction
+
+The control of human–robot interfaces requires reliable interpretation of sensor signals, particularly when human movement is used as the input for robotic motion. Flex sensors used for elbow movement measurement can produce signals containing unwanted high-frequency variations caused by electrical noise, sensor fluctuations, and small unintended changes in movement. If these components are passed directly to the control system, they may introduce unnecessary oscillations and affect the stability and smoothness of the resulting robotic motion.
+
+To address this issue, a second-order Butterworth low-pass filter is designed to retain the frequency components associated with typical human elbow movement while attenuating higher-frequency disturbances. The cutoff frequency is selected around the average practically achievable repetitive elbow movement frequency, approximately 3 Hz, allowing the filter to preserve the useful motion information while suppressing unwanted high-frequency noise.
+
+The mathematical calculation presented in this section develops the transfer function of the filter from the circuit configuration, determines the component values required for the desired frequency response, and subsequently verifies the Butterworth characteristics. The design is further examined through stability analysis and state-space representation, providing a complete mathematical description of the filtering system.
+
+The objective is therefore not to make the sensor signal perfectly still—that would be a rather poor representation of a moving human elbow—but to make the signal sufficiently clean for reliable downstream control.
+
+# Mathematical Calculations
+
 ## 1. Capacitor Current
 
 $$
@@ -775,3 +787,13 @@ u
 $$
 
 $$\boxed{y=\begin{bmatrix}1&0\end{bmatrix}x}$$
+
+# Conclusion
+
+The designed second-order Butterworth low-pass filter provides a mathematically defined method for separating useful human elbow movement information from unwanted high-frequency components. By selecting the cutoff region around the typical repetitive movement frequency of the human elbow, the filter is designed to preserve the dominant motion characteristics while attenuating faster variations and noise.
+
+The component values were obtained systematically from the required natural frequency and Butterworth damping condition rather than being selected arbitrarily. The initial component selection was subsequently verified against the required filter characteristics, allowing the gain and associated resistance to be adjusted to achieve the desired Butterworth response.
+
+The resulting system was also verified using the Routh-Hurwitz criterion, confirming that the designed system is stable. Its state-space representation provides an additional mathematical form suitable for simulation, analysis, and future integration with the robotic control system.
+
+Overall, the filter establishes a practical signal-conditioning stage between the flex sensor and the robotic controller. It allows the control system to respond primarily to intentional human movement rather than every small electrical fluctuation the sensor happens to pick up—because, thankfully, the robot does not need to interpret every tiny twitch as a command.
