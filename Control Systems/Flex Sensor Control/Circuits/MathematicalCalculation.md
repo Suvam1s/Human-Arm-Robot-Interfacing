@@ -126,9 +126,10 @@ As we are trying to get a Butterworth-type cutoff.
 
 Second-order Butterworth filter (low-pass) system gain:
 
+**(2)**
+
 $$
 H(s)=\frac{Y(s)}{X(s)}=\frac{H\omega^2}{s^2+\sqrt{2}\omega s+\omega^2}
-\tag{2}
 $$
 
 Here $H$ is the overall gain.
