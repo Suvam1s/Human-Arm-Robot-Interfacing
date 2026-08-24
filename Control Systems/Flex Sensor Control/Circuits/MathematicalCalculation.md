@@ -127,10 +127,7 @@ As we are trying to get a Butterworth-type cutoff.
 Second-order Butterworth filter (low-pass) system gain:
 
 $$
-H(s)=\frac{Y(s)}{X(s)}
-=
-\frac{H\omega^2}
-{s^2+\sqrt{2}\omega s+\omega^2}
+H(s)=\frac{Y(s)}{X(s)}=\frac{H\omega^2}{s^2+\sqrt{2}\omega s+\omega^2}
 \tag{2}
 $$
 
@@ -139,23 +136,11 @@ Here $H$ is the overall gain.
 Comparing Equation (1) and Equation (2):
 
 $$
-\omega^2
-=
-\frac{1}{C_1C_2R_2R_3}
+\omega^2=\frac{1}{C_1C_2R_2R_3}
 $$
 
 $$
-\omega
-=
-\frac{1}{\sqrt{2}}
-\frac{1}{C_1}
-\left(
-\frac{1}{R_1}
-+
-\frac{1}{R_2}
-+
-\frac{1}{R_3}
-\right)
+\omega=\frac{1}{\sqrt{2}}\frac{1}{C_1}\left(\frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R_3}\right)
 $$
 
 $$
@@ -241,41 +226,17 @@ $$
 Now substituting the values of $\omega$, $R_3$, $C_1$, and $C_2$ in the equation:
 
 $$
-\omega^2
-=
-\frac{1}{C_1C_2R_2R_3}
+\omega^2=\frac{1}{C_1C_2R_2R_3}
 $$
 
 Therefore,
 
 $$
-(18.84)^2
-=
-\frac{1}
-{
-100\times10^{-6}
-\times
-10\times10^{-6}
-\times
-R_2
-\times
-1000
-}
+(18.84)^2=\frac{1}{100\times10^{-6}\times10\times10^{-6}\times{R_2}\times1000}
 $$
 
 $$
-R_2
-=
-\frac{1}
-{
-100\times10^{-6}
-\times
-10\times10^{-6}
-\times
-1000
-\times
-354.94
-}
+R_2=\frac{1}{100\times10^{-6}\times10\times10^{-6}\times1000\times354.94}
 $$
 
 $$
@@ -768,9 +729,21 @@ $$\boxed{\dot{x}=Ax+Bu}$$
 
 where:
 
-$$\boxed{A=\begin{bmatrix}0&1\\-357.1429&-26.7261\end{bmatrix}}$$
+$$
+A =
+\begin{bmatrix}
+0 & 1 \\
+-357.1429 & -26.7261
+\end{bmatrix}
+$$
 
-$$\boxed{B=\begin{bmatrix}0\\469.8107\end{bmatrix}}$$
+$$
+B =
+\begin{bmatrix}
+0 \\
+469.8107
+\end{bmatrix}
+$$
 
 The output equation is:
 
@@ -786,14 +759,12 @@ Hence, the complete state-space model is:
 
 $$
 \boxed{
-\dot{x}
-=
+\dot{x} =
 \begin{bmatrix}
 0 & 1 \\
 -357.1429 & -26.7261
 \end{bmatrix}
-x
-+
+x +
 \begin{bmatrix}
 0 \\
 469.8107
