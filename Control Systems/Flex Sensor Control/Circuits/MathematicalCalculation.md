@@ -419,7 +419,7 @@ Hence, the initial design is not Butterworth.
 ---
 
 ## 14. Butterworth Gain Adjustment
-
+### Method 1
 The selected values are kept as:
 
 $$
@@ -680,6 +680,181 @@ $$f_c\approx3.008\ Hz$$
 ### Damping Ratio
 
 $$\zeta=0.7071=\frac{1}{\sqrt{2}}$$
+
+### Method 2
+The second method uses root-locus analysis to determine the required gain \(H\) while keeping the selected \(C_1\), \(C_2\), \(R_2\), and \(R_3\) fixed.
+
+1. Component Values
+
+$$C_1=100\mu F$$
+
+$$C_2=10\mu F$$
+
+$$R_2=2.8k\Omega$$
+
+$$R_3=1k\Omega$$
+
+From the circuit gain relationship:
+
+$$R_1H=R_3$$
+
+Therefore:
+
+$$R_1=\frac{R_3}{H}$$
+
+2. Natural Frequency
+
+$$\omega_n^2=\frac{1}{C_1C_2R_2R_3}$$
+
+$$\omega_n^2=\frac{1}{(100\times10^{-6})(10\times10^{-6})(2800)(1000)}$$
+
+$$\omega_n^2=357.1429$$
+
+Therefore:
+
+$$\boxed{\omega_n=18.8982\ rad/s}$$
+
+3. Desired Butterworth Pole Location
+
+For a second-order Butterworth system:
+
+$$\zeta=\frac{1}{\sqrt{2}}=0.7071$$
+
+The damping-ratio angle is:
+
+$$\theta=\cos^{-1}(\zeta)$$
+
+$$\boxed{\theta=45^\circ}$$
+
+The desired pole location is:
+
+$$s_d=-\zeta\omega_n\pm j\omega_n\sqrt{1-\zeta^2}$$
+
+$$s_d=-(0.7071)(18.8982)\pm j(18.8982)\sqrt{1-0.7071^2}$$
+
+Therefore:
+
+$$\boxed{s_d=-13.3631\pm j13.3631}$$
+
+4. Obtaining the Root-Locus Equation
+
+The original characteristic equation is:
+
+$$s^2+\frac{1}{C_1}\left(\frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R_3}\right)s+\frac{1}{C_1C_2R_2R_3}=0$$
+
+Since:
+
+$$R_1=\frac{R_3}{H}$$
+
+then:
+
+$$\frac{1}{R_1}=\frac{H}{R_3}$$
+
+Therefore:
+
+$$s^2+\frac{1}{C_1}\left(\frac{H}{R_3}+\frac{1}{R_2}+\frac{1}{R_3}\right)s+\frac{1}{C_1C_2R_2R_3}=0$$
+
+Substituting the component values:
+
+$$s^2+(10H+13.5714)s+357.1429=0$$
+
+Rearranging:
+
+$$s^2+13.5714s+357.1429+10Hs=0$$
+
+Dividing by the fixed part:
+
+$$1+H\frac{10s}{s^2+13.5714s+357.1429}=0$$
+
+Hence, the root-locus function is:
+
+$$\boxed{G(s)=\frac{10s}{s^2+13.5714s+357.1429}}$$
+
+This is valid because the characteristic equation has been rearranged directly into the standard root-locus form \(1+HG(s)=0\), with \(H\) as the variable gain.
+
+5. Root-Locus Poles and Zero
+
+The open-loop poles are obtained from:
+
+$$s^2+13.5714s+357.1429=0$$
+
+giving:
+
+$$\boxed{s_{1,2}=-6.7857\pm j17.6389}$$
+
+The open-loop zero is:
+
+$$10s=0$$
+
+$$\boxed{s=0}$$
+
+6. Root-Locus Gain at the Desired Pole
+
+Using the desired pole:
+
+$$s_d=-13.3631+j13.3631$$
+
+the root-locus function becomes:
+
+$$G(s_d)=\frac{10s_d}{s_d^2+13.5714s_d+357.1429}$$
+
+Substituting \(s_d\):
+
+$$G(s_d)\approx-0.76018$$
+
+The magnitude condition is:
+
+$$|HG(s_d)|=1$$
+
+Therefore:
+
+$$H=\frac{1}{|G(s_d)|}$$
+
+$$H=\frac{1}{0.76018}$$
+
+$$\boxed{H=1.3155}$$
+
+7. Calculation of \(R_1\)
+
+Using:
+
+$$R_1=\frac{R_3}{H}$$
+
+$$R_1=\frac{1000}{1.3155}$$
+
+Therefore:
+
+$$\boxed{R_1\approx760.2\Omega}$$
+
+8. Final Verification
+
+Substituting \(H=1.3155\):
+
+$$s^2+(13.5714+10(1.3155))s+357.1429=0$$
+
+$$s^2+26.7261s+357.1429=0$$
+
+Comparing with:
+
+$$s^2+2\zeta\omega_ns+\omega_n^2$$
+
+gives:
+
+$$\zeta=0.7071$$
+
+and:
+
+$$\omega_n=18.8982\ rad/s$$
+
+Thus:
+
+$$\boxed{s_{1,2}=-13.3631\pm j13.3631}$$
+
+and the required gain is:
+
+$$\boxed{H=1.3155}$$
+
+The complete root-locus calculation, pole-path generation, gain variation, and final pole-map plot are implemented in `RootLocus.py` in the same directory.
 ## 15. Routh-Hurwitz Criterion
 
 The characteristic equation is obtained from the denominator of the final transfer function:
