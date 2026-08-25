@@ -682,6 +682,7 @@ $$f_c\approx3.008\ Hz$$
 $$\zeta=0.7071=\frac{1}{\sqrt{2}}$$
 
 ### Method 2
+> **Note:** The root-locus method is not strictly necessary for this second-order filter design, since the required gain can be obtained directly from the Butterworth coefficient comparison. However, it is included here intentionally as an additional control-systems skill demonstration, showing how the pole locations change with gain and how the desired Butterworth operating point can be identified graphically.
 The second method uses root-locus analysis to determine the required gain \(H\) while keeping the selected \(C_1\), \(C_2\), \(R_2\), and \(R_3\) fixed.
 
 1. Component Values
