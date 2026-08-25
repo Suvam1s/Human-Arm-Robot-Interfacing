@@ -4,8 +4,7 @@
 The robotic arm is a **5R serial manipulator**, meaning that all five joints are revolute joints and each joint contributes one rotational degree of freedom. The motion of the robot is therefore described in **joint space** by the joint-variable vector:
 
 $$
-\mathbf{q}
-=
+\mathbf{q}=
 \begin{bmatrix}
 q_1 \\
 q_2 \\
@@ -32,8 +31,7 @@ Therefore, the overall movement of the robot is produced by the combined rotatio
 Each revolute joint is represented by a screw axis:
 
 $$
-S_i
-=
+S_i=
 \begin{bmatrix}
 \boldsymbol{\omega}_i \\
 \mathbf{v}_i
@@ -45,8 +43,7 @@ where $\boldsymbol{\omega}_i$ represents the direction of the joint axis and $\m
 For a revolute joint:
 
 $$
-\mathbf{v}_i
-=
+\mathbf{v}_i=
 -\boldsymbol{\omega}_i \times \mathbf{q}_i
 $$
 
@@ -142,8 +139,7 @@ The motion of the end effector is produced by the combined effect of these joint
 Its instantaneous spatial velocity can be represented by:
 
 $$
-\mathbf{V}
-=
+\mathbf{V}=
 \mathbf{J}(\mathbf{q})\dot{\mathbf{q}}
 $$
 
@@ -160,7 +156,7 @@ Thus, changing one or more joint angles changes the configuration of the complet
 The robot operates in a **three-dimensional Cartesian workspace**. The joint coordinates used in the kinematic model are:
 
 $$
-\mathbf{q}_1 =
+\mathbf{q}_1=
 \begin{bmatrix}
 0 \\
 0 \\
@@ -237,8 +233,7 @@ then determines the robot's physical configuration.
 The resulting end-effector motion can be represented as:
 
 $$
-\mathbf{T}(t)
-=
+\mathbf{T}(t)=
 f\left(\mathbf{q}(t)\right)
 $$
 
